@@ -1,65 +1,97 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { FaAngleRight } from "react-icons/fa";
+import { FaAngleLeft } from "react-icons/fa";
+import { FaPlay } from "react-icons/fa";
+import { FaPause } from "react-icons/fa6";
+import { carouselItems } from "../data";
 
-export default function Carousel(props) {
-  const items = [
-    <div className="h-[480px] w-full">
-      <img src="src\images\3games.png" alt="3games" />
-      <h3 className="text-center">NEW YEAR, NEW GAMES & MORE GOLD</h3>
-      <h2 className="text-center text-2xl text-[#44D62C] mt-1">
-        ENJOY 15% EXTRA BONUS GOLD ON ALL GAMES!
-      </h2>
-    </div>,
+export default function Carousel() {
 
-    <div className="h-[480px] w-full">
-      <img src="src\images\valo1.png" alt="valorant" />
-      <h3 className="text-center">VALORANT S25 IS HERE</h3>
-      <h2 className="text-center text-2xl text-[#44D62C] mt-1">
-        GRAB 4% DISCOUNT + GET 15% BONUS RAZER GOLD NOW!
-      </h2>
-    </div>,
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const sliderRef = useRef(null);
 
-    <div className="h-[480px] w-full">
-      <img src="src\images\roblox.png" alt="roblox" />
-      <h3 className="text-center">BUY ROBLOX PINS ON RAZER GOLD</h3>
-      <h2 className="text-center text-2xl text-[#44D62C] mt-1">
-        GET ROBLOX POINTS AT THE BEST PRICES NOW!
-      </h2>
-    </div>,
-
-    <div className="h-[480px] w-full">
-      <img src="src\images\freefire.png" alt="freefire" />
-      <h3 className="text-center">BOOYAH & DOMINATE MAX!</h3>
-      <h2 className="text-center text-2xl text-[#44D62C] mt-1">
-        RECHARGE DIAMONDS ON RAZER GOLD!
-      </h2>
-    </div>,
-
-    <div className="h-[480px] w-full">
-      <img src="src\images\valo2.png" alt="valorant" />
-      <h3 className="text-center">LOWEST PRICES ON VP</h3>
-      <h2 className="text-center text-2xl text-[#44D62C] mt-1">
-        GET 4% DISCOUNT + 15% BONUS RAZER GOLD!
-      </h2>
-    </div>,
-
-    <div className="h-[480px] w-full">
-      <img src="src\images\valo3.png" alt="valorant" />
-      <h3 className="text-center">VALORANT S25 IS HERE</h3>
-      <h2 className="text-center text-2xl text-[#44D62C] mt-1">
-        GRAB 4% DISCOUNT + GET 15% BONUS RAZER GOLD NOW!
-      </h2>
-    </div>,
-  ];
-
-  const responsive = {
-    0: {
-      items: 1,
-    },
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: isPlaying,
+    autoplaySpeed: 3000,
+    arrows: false,
+    appendDots: (dots) => (
+      <div className="!flex !justify-center !items-center mt-4">
+        {/* Play/Stop Button */}
+        <button
+          className="text-white text-2xl cursor-pointer"
+          onClick={() => setIsPlaying(!isPlaying)}
+          title={isPlaying ? "Pause" : "Play"}
+        >
+          {isPlaying ? <FaPause/>  : <FaPlay size={17}/>}
+        </button>
+        {/* Dots */}
+        <ul className="flex space-x-3">{dots}</ul>
+      </div>
+    ),
+    customPaging: (index) => (
+      <div
+        style={{
+          width: "14px",
+          height: "14px",
+          backgroundColor: index === currentSlide ? "#44D62C" : "#CCCCCC",
+          borderRadius: "50%",
+          transition: "background-color 0.3s ease",
+        }}
+      ></div>
+    ),
+    beforeChange: (current, next) => setCurrentSlide(next),
   };
 
+  
+
+  useEffect(() => {
+    const slickDots = document.querySelector(".slick-dots");
+    if (slickDots) {
+      slickDots.style.display = "flex";
+      slickDots.style.justifyContent = "center";
+      slickDots.style.alignItems = "center";
+      slickDots.style.marginTop = "1rem";
+      slickDots.style.gap = "1rem";
+    }
+  }, []);
+  
   return (
-    <div className="flex flex-col items-center cursor-pointer justify-around h-[480px] w-full">
+    <div className="w-full">
+      <Slider {...settings} ref={sliderRef}>
+        {carouselItems.map((item, index) => (
+          <div key={index} className="h-[480px] w-full mb-5 cursor-pointer">
+            <img
+              src={item.img}
+              alt={item.alt}
+            />
+            <h3 className="text-center">{item.title}</h3>
+            <h2 className="text-center text-2xl text-[#44D62C] mt-1">
+              {item.subtitle}
+            </h2>
+          </div>
+          
+        ))}
+      </Slider>
+
+      {/*Custom Arrow*/}
+
+      <button className="absolute right-4 top-1/3 transform -translate-y-1/3 text-white text-3xl z-10" onClick={()=>sliderRef.current.slickNext()}>
+      <span><FaAngleRight/></span>
+      </button>
       
+      <button className="absolute left-4 top-1/3 transform -translate-y-1/3 text-white text-3xl z-10" onClick={()=>sliderRef.current.slickPrev()}>
+      <span><FaAngleLeft/></span>
+      </button>
+
     </div>
   );
 }
