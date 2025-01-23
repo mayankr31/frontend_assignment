@@ -3,7 +3,7 @@ import React from "react";
 export default function SocialBanner(props) {
   return (
     <div className="flex mx-48 mb-3">
-      <img src="src\images\banner.png" alt="razerbanner" className="w-[490px] opacity-90"/>
+      <img src="https://i.imgur.com/IBqPtbW.png" alt="razerbanner" className="w-[490px] opacity-90"/>
       <div className="px-3 py-5">
         <p className="mb-[10px] text-[#BBBBBB] text-sm">
           Epic Games. Limited Edition in-game content. Exclusive promotions.

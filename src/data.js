@@ -1,36 +1,36 @@
 const carouselItems = [
   {
-    img: "src/images/3games.png",
+    img: "https://i.imgur.com/I3CUrE4.png", 
     alt: "3games",
     title: "NEW YEAR, NEW GAMES & MORE GOLD",
     subtitle: "ENJOY 15% EXTRA BONUS GOLD ON ALL GAMES!",
   },
   {
-    img: "src/images/valo1.png",
+    img: "https://i.imgur.com/lFjgjdW.png",
     alt: "valorant",
     title: "VALORANT S25 IS HERE",
     subtitle: "GRAB 4% DISCOUNT + GET 15% BONUS RAZER GOLD NOW!",
   },
   {
-    img: "src/images/roblox.png",
+    img: "https://i.imgur.com/3LbZal1.png",
     alt: "roblox",
     title: "BUY ROBLOX PINS ON RAZER GOLD",
     subtitle: "GET ROBLOX POINTS AT THE BEST PRICES NOW!",
   },
   {
-    img: "src/images/freefire.png",
+    img: "https://i.imgur.com/sJdsxys.png",
     alt: "freefire",
     title: "BOOYAH & DOMINATE MAX!",
     subtitle: "RECHARGE DIAMONDS ON RAZER GOLD!",
   },
   {
-    img: "src/images/valo2.png",
+    img: "https://i.imgur.com/BJhlbzb.png",
     alt: "valorant",
     title: "LOWEST PRICES ON VP",
     subtitle: "GET 4% DISCOUNT + 15% BONUS RAZER GOLD!",
   },
   {
-    img: "src/images/valo3.png",
+    img: "https://i.imgur.com/1TOS7x9.png",
     alt: "valorant",
     title: "VALORANT S25 IS HERE",
     subtitle: "GRAB 4% DISCOUNT + GET 15% BONUS RAZER GOLD NOW!",
